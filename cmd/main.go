@@ -1,9 +1,13 @@
 package main
 
-import "fmt"
+import (
+	"github.com/labstack/echo/v4"
+)
 
 func main() {
-	x := 10
-	c := 12
-	fmt.Printf("type %T value %v\n", x, c)
+	e := echo.New()
+	e.GET("/", func(c echo.Context) error {
+		return c.String(200, "Hello from Echo")
+	})
+	e.Logger.Fatal(e.Start(":8080"))
 }
