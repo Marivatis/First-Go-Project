@@ -1,13 +1,21 @@
 package main
 
 import (
-	"github.com/labstack/echo/v4"
+	"First-Go-Project/internal/config"
+	"First-Go-Project/internal/server"
+	"log"
 )
 
 func main() {
-	e := echo.New()
-	e.GET("/", func(c echo.Context) error {
-		return c.String(200, "Hello from Echo")
-	})
-	e.Logger.Fatal(e.Start(":8080"))
+	cfg, err := config.LoadConfig("config/config.yaml")
+
+	if err != nil {
+		log.Fatal("Error loading config", err)
+	}
+
+	e := server.New()
+
+	if err := server.Start(e, cfg.Server.Port); err != nil {
+		log.Fatal("Error starting server", err)
+	}
 }
