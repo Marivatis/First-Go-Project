@@ -1,6 +1,7 @@
 package server
 
 import (
+	"First-Go-Project/internal/handler"
 	"fmt"
 	"github.com/labstack/echo/v4"
 	"net/http"
@@ -12,6 +13,9 @@ func New() *echo.Echo {
 	e.GET("/ping", func(c echo.Context) error {
 		return c.String(http.StatusOK, "pong")
 	})
+
+	h := handler.New()
+	h.RegisterRoutes(e)
 
 	return e
 }
