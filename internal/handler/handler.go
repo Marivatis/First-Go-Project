@@ -1,14 +1,18 @@
 package handler
 
 import (
+	"First-Go-Project/internal/service"
 	"github.com/labstack/echo/v4"
 )
 
 type Handler struct {
+	services *service.Service
 }
 
-func New() *Handler {
-	return &Handler{}
+func New(services *service.Service) *Handler {
+	return &Handler{
+		services: services,
+	}
 }
 
 func (h *Handler) RegisterRoutes(e *echo.Echo) {
