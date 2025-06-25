@@ -1,6 +1,7 @@
 package handler
 
 import (
+	"First-Go-Project/internal/entity"
 	"github.com/labstack/echo/v4"
 	"net/http"
 )
@@ -14,12 +15,7 @@ func (h *Handler) getNoteById(c echo.Context) error {
 }
 
 func (h *Handler) createNote(c echo.Context) error {
-	type NoteInput struct {
-		Title string `json:"title"`
-		Body  string `json:"body"`
-	}
-
-	var input NoteInput
+	var input entity.Note
 	if err := c.Bind(&input); err != nil {
 		return c.JSON(http.StatusBadRequest, map[string]string{"error": err.Error()})
 	}
