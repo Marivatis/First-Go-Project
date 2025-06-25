@@ -2,6 +2,8 @@ package server
 
 import (
 	"First-Go-Project/internal/handler"
+	"First-Go-Project/internal/repository"
+	"First-Go-Project/internal/service"
 	"fmt"
 	"github.com/labstack/echo/v4"
 	"net/http"
@@ -14,7 +16,9 @@ func New() *echo.Echo {
 		return c.String(http.StatusOK, "pong")
 	})
 
-	h := handler.New()
+	repo := repository.NewRepository()
+	services := service.NewService(repo)
+	h := handler.New(services)
 	h.RegisterRoutes(e)
 
 	return e
