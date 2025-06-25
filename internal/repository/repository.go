@@ -14,7 +14,7 @@ type Repository struct {
 	NoteItem
 }
 
-func New() *Repository {
+func NewRepository() *Repository {
 	return &Repository{
 		NoteItem: NewNoteMemory(),
 	}
