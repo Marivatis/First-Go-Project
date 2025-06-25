@@ -2,7 +2,7 @@ package repository
 
 import "First-Go-Project/internal/entity"
 
-type NoteRepository interface {
+type NoteItem interface {
 	Create(note entity.Note) (int, error)
 	GetById(id int) (entity.Note, error)
 	//GetAll() ([]entity.Note, error)
@@ -11,11 +11,11 @@ type NoteRepository interface {
 }
 
 type Repository struct {
-	NoteRepository
+	NoteItem
 }
 
 func New() *Repository {
 	return &Repository{
-		NoteRepository: NewNoteMemory(),
+		NoteItem: NewNoteMemory(),
 	}
 }
