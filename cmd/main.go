@@ -13,7 +13,7 @@ func main() {
 		log.Fatal("Error loading config", err)
 	}
 
-	e := server.New()
+	e := server.NewServer()
 
 	if err := server.Start(e, cfg.Server.Port); err != nil {
 		log.Fatal("Error starting server", err)

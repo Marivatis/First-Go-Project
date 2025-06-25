@@ -9,7 +9,7 @@ import (
 	"net/http"
 )
 
-func New() *echo.Echo {
+func NewServer() *echo.Echo {
 	e := echo.New()
 
 	e.GET("/ping", func(c echo.Context) error {
