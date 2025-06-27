@@ -16,6 +16,14 @@ func New(services *service.Service) *Handler {
 }
 
 func (h *Handler) RegisterRoutes(e *echo.Echo) {
-	e.GET("/notes/:id", h.getNoteById)
-	e.POST("/notes", h.createNote)
+	h.registerNoteRoutes(e)
+}
+
+func (h *Handler) registerNoteRoutes(e *echo.Echo) {
+	notes := e.Group("/notes")
+	notes.POST("", h.createNote)
+	notes.GET("", h.getAllNotes)
+	notes.GET("/:id", h.getNoteById)
+	notes.PUT("/:id", h.updateNote)
+	notes.DELETE("/:id", h.deleteNote)
 }
