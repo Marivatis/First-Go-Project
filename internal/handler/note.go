@@ -32,10 +32,9 @@ func (h *Handler) createNote(c echo.Context) error {
 }
 
 func (h *Handler) getNoteById(c echo.Context) error {
-	id, err := strconv.Atoi(c.Param("id"))
+	id, err := parseIdParam(c)
 	if err != nil {
-		log.Printf("invalid id format error: %v", err)
-		return echo.NewHTTPError(http.StatusBadRequest, "invalid id")
+		return err
 	}
 
 	note, err := h.services.GetById(id)
@@ -107,4 +106,13 @@ func (h *Handler) deleteNote(c echo.Context) error {
 		"message": "Note deleted",
 		"id":      id,
 	})
+}
+
+func parseIdParam(c echo.Context) (int, error) {
+	id, err := strconv.Atoi(c.Param("id"))
+	if err != nil {
+		log.Printf("invalid id format error: %v", err)
+		return 0, echo.NewHTTPError(http.StatusBadRequest, "invalid id")
+	}
+	return id, nil
 }
