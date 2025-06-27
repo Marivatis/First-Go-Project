@@ -8,9 +8,9 @@ import (
 type NoteItem interface {
 	Create(note entity.Note) (int, error)
 	GetById(id int) (entity.Note, error)
-	//GetAll() ([]entity.Note, error)
-	//Update(note entity.Note) error
-	//Delete(id int) error
+	GetAll() ([]entity.Note, error)
+	Update(note entity.Note) error
+	Delete(id int) error
 }
 
 type Service struct {
