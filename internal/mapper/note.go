@@ -25,3 +25,11 @@ func ToNoteDTO(note entity.Note) dto.NoteResponse {
 		Body:  note.Body,
 	}
 }
+
+func ToNoteDTOList(notes []entity.Note) []dto.NoteResponse {
+	resp := make([]dto.NoteResponse, 0, len(notes))
+	for _, note := range notes {
+		resp = append(resp, ToNoteDTO(note))
+	}
+	return resp
+}
