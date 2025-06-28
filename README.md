@@ -1,21 +1,18 @@
 # First-Go-Project  
 
----
 A simple backend service for managing notes (CRUD API) written in Go.  
 This project demonstrates fundamental principles of clean architecture, including separation of concerns between entities, services, repositories, and DTOs.
 
 ## Features:  
 
----
 - Create, read, update, and delete notes
 - Input validation
 - In-memory data storage
 - Basic events logging
 - Unit tests for service and repository layers
 
-## Technologies  
+## Technologies
 
----
 - Go 1.24
 - Echo web framework
 - Go standard library (net/http, sync, log, etc.)
@@ -24,7 +21,6 @@ This project demonstrates fundamental principles of clean architecture, includin
 
 ## API Endpoints
 
----
 ### Notes
 
 | Method | Path           | Description             |
@@ -37,7 +33,6 @@ This project demonstrates fundamental principles of clean architecture, includin
 
 ## How to run
 
----
 Run the application from the project folder using:
 ```bash
 go run main.go
