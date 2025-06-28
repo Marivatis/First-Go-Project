@@ -17,7 +17,7 @@ func ValidateNoteCreate(note entity.Note) error {
 }
 
 func ValidateNoteUpdate(note entity.Note) error {
-	if note.Id() < 0 {
+	if note.Id() <= 0 {
 		return errors.New("invalid note id")
 	}
 	if strings.TrimSpace(note.Title) == "" {
