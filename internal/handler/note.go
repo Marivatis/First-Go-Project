@@ -2,6 +2,7 @@ package handler
 
 import (
 	"First-Go-Project/internal/dto"
+	"First-Go-Project/internal/entity"
 	"First-Go-Project/internal/mapper"
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/gommon/log"
@@ -10,13 +11,13 @@ import (
 )
 
 func (h *Handler) createNote(c echo.Context) error {
-	var input dto.NoteRequestCreate
+	var input dto.NoteRequest
 	if err := c.Bind(&input); err != nil {
 		log.Printf("bind error: %v", err)
 		return echo.NewHTTPError(http.StatusBadRequest, err.Error())
 	}
 
-	note := mapper.ToNoteEntityCreate(input)
+	note := mapper.ToNoteEntity(input)
 
 	id, err := h.services.Create(note)
 	if err != nil {
@@ -63,17 +64,19 @@ func (h *Handler) getAllNotes(c echo.Context) error {
 }
 
 func (h *Handler) updateNote(c echo.Context) error {
-	var input dto.NoteRequestUpdate
-	if err := c.Bind(&input); err != nil {
+	idStr := c.Param("id")
+	id, err := strconv.Atoi(idStr)
+	if err != nil {
+		return echo.NewHTTPError(http.StatusBadRequest, "invalid id")
+	}
+
+	var input dto.NoteRequest
+	if err = c.Bind(&input); err != nil {
 		log.Printf("bind error: %v", err)
 		return echo.NewHTTPError(http.StatusBadRequest, err.Error())
 	}
 
-	note, err := mapper.ToNoteEntityUpdate(input)
-	if err != nil {
-		log.Printf("invalid note format error: %v", err)
-		return echo.NewHTTPError(http.StatusBadRequest, err.Error())
-	}
+	note := entity.NewNote(id, input.Title, input.Body)
 
 	err = h.services.Update(note)
 	if err != nil {

@@ -3,19 +3,10 @@ package mapper
 import (
 	"First-Go-Project/internal/dto"
 	"First-Go-Project/internal/entity"
-	"strconv"
 )
 
-func ToNoteEntityCreate(input dto.NoteRequestCreate) entity.Note {
+func ToNoteEntity(input dto.NoteRequest) entity.Note {
 	return entity.NewNote(entity.UnsetNoteId, input.Title, input.Body)
-}
-
-func ToNoteEntityUpdate(input dto.NoteRequestUpdate) (entity.Note, error) {
-	id, err := strconv.Atoi(input.Id)
-	if err != nil {
-		return entity.Note{}, err
-	}
-	return entity.NewNote(id, input.Title, input.Body), nil
 }
 
 func ToNoteDTO(note entity.Note) dto.NoteResponse {

@@ -1,12 +1,6 @@
 package dto
 
-type NoteRequestCreate struct {
-	Title string `json:"title"`
-	Body  string `json:"body"`
-}
-
-type NoteRequestUpdate struct {
-	Id    string `json:"id"`
+type NoteRequest struct {
 	Title string `json:"title"`
 	Body  string `json:"body"`
 }
