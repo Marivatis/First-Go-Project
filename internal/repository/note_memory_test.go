@@ -43,7 +43,7 @@ func TestNoteMemory_GetById(t *testing.T) {
 	t.Run("not found", func(t *testing.T) {
 		repo := NewNoteMemory()
 		_, err := repo.GetById(999)
-		assert.Error(t, err)
+		assert.ErrorIs(t, err, ErrNoteNotFound)
 	})
 }
 
