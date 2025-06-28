@@ -15,7 +15,7 @@ func main() {
 
 	e := server.NewServer()
 
-	if err := server.Start(e, cfg.Server.Port); err != nil {
+	if err = server.Start(e, cfg.Server.Port); err != nil {
 		log.Fatal("Error starting server", err)
 	}
 }

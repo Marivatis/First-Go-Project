@@ -6,7 +6,6 @@ This project demonstrates fundamental principles of clean architecture, includin
 ## Features:  
 
 - Create, read, update, and delete notes
-- Input validation
 - In-memory data storage
 - Basic events logging
 - Unit tests for service and repository layers
